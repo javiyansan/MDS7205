@@ -3,7 +3,7 @@
 Este repositorio contiene los trabajos y laboratorios del curso MDS7205. 
 
 ## 📂 Contenidos
-* **[Lab 1: The Resource Description Framework](./Lab1/)** 
+* **[Lab 1: The Resource Description Framework](./lab_1/)** 
   * Modelamiento de datos personales con FOAF y RDFS.
   * Archivo principal: `javiera-yanez.ttl`
   * `image.png´: Imagen con el grafo del archivo `javiera-yanez.ttl´.
