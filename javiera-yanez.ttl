@@ -1,0 +1,32 @@
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix ex: <http://example.org/> . #IRI
+
+# Pregunta 1
+ex:javiu a ex:Estudiante ;
+    foaf:name "Javiera Yáñez Sánchez" ;
+    foaf:firstName "Javiera" ; 
+    foaf:lastName "Yañez" ;
+    foaf:mbox <mailto:javiera.yanez.s@ug.uchile.cl> ;
+    foaf:image <https://i.pinimg.com/1200x/43/4b/0d/434b0d8c2e32e1881bf8261336afe875.jpg> ;
+    foaf:homepage <https://www.linkedin.com/in/javierapazyanez/> ;
+    foaf:knows ex:gonzalosobarso;
+    foaf:knows ex:nombre2 ;
+    ex:EstudiaEn <https://www.wikidata.org/wiki/Q232141> .
+
+# Pregunta 2
+ex:Estudiante a rdfs:Class;
+    rdfs:subClassOf foaf:Person;
+    rdfs:label "Estudiante";
+    rdfs:comment "Una persona matriculada en una institucion de educación" .
+
+ex:EstudiaEn a rdf:Property;
+    rdfs:label "estudia en";
+    rdfs:comment "Indica en que establecimiento educacional estudia el estudiante";
+    rdfs:domain ex:Estudiante;
+    rdfs:range <https://www.wikidata.org/wiki/Q3918> .
+
+
+
