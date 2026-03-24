@@ -1,13 +1,14 @@
-# Laboratorio 1: Grafos de Conocimiento (MDS7205)
+# MDS7205: Grafos de Conocimiento - Universidad de Chile
 
-Este repositorio contiene los archivos correspondientes al Laboratorio 1.
+Este repositorio contiene los trabajos y laboratorios del curso MDS7205. 
 
-## Herramientas de Validación y Visualización
-Para el desarrollo de este laboratorio, se utilizaron las siguientes herramientas:
+## 📂 Contenidos
+* **[Lab 1: The Resource Description Framework](./Lab1/)** 
+  * Modelamiento de datos personales con FOAF y RDFS.
+  * Archivo principal: `javiera-yanez.ttl`
+  * `image.png´: Imagen con el grafo del archivo `javiera-yanez.ttl´.
+  * Validado en: [RDFShape](https://rdfshape.weso.es/dataInfo)
+  * Visualizado en: [RDF Grapher](https://www.ldf.fi/service/rdf-grapher)
 
-* **Validación de código (P3):** El archivo `.ttl` fue validado exitosamente en [RDFShape](https://rdfshape.weso.es/dataInfo).
-* **Generación de Grafo (P4):** La imagen del grafo se generó utilizando [RDF Grapher](https://www.ldf.fi/service/rdf-grapher).
-
-## Archivos
-* `javiera-yanez.ttl`: Archivo principal con la definición de recursos FOAF y la ontología local.
-* `image.png´: Imagen con el grafo del archivo `javiera-yanez.ttl´.
+---
+*Próximos laboratorios se irán agregando a medida que avance el semestre.*
