@@ -13,7 +13,7 @@ ex:javiu a ex:Estudiante ;
     foaf:image <https://i.pinimg.com/1200x/43/4b/0d/434b0d8c2e32e1881bf8261336afe875.jpg> ;
     foaf:homepage <https://www.linkedin.com/in/javierapazyanez/> ;
     foaf:knows ex:gonzalosobarso;
-    foaf:knows ex:nombre2 ;
+    foaf:knows ex:tamara-carrasco ;
     ex:EstudiaEn <https://www.wikidata.org/wiki/Q232141> .
 
 # Pregunta 2
