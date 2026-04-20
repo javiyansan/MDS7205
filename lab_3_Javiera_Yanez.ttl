@@ -1,0 +1,129 @@
+# Prefijos
+@prefix sh:    <http://www.w3.org/ns/shacl#> .
+@prefix xsd:   <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdf:   <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs:  <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix foaf:  <http://xmlns.com/foaf/0.1/> .
+@prefix dbo:   <http://dbpedia.org/ontology/> .
+@prefix dbp:   <http://dbpedia.org/property/> .
+@prefix nobel: <http://data.nobelprize.org/terms/> .
+
+# Pregunta 1
+
+# El error de validacion que se presenta corresponde a que se restringe la propiedad birthday a str
+# y en el Data Graph se encuentra guardado en formato fecha (date).
+
+ex:PersonShape a sh:NodeShape ;
+    sh:targetClass foaf:Person ;
+    sh:property [
+       sh:path foaf:birthday ;
+       sh:datatype xsd:date ;
+    ] .
+
+# lo que se debe corregir en la restriccion es xsd: ya que acotaba a str en fechas de cumpleaños
+# por lo que hay que cambiar esto a date.
+
+
+#Pregunta 2
+
+ex:PersonShape a sh:NodeShape ;
+    sh:targetClass foaf:Person ;
+    sh:property [
+       sh:path foaf:birthday ;
+       sh:datatype xsd:date ;
+    ] ;
+	
+	sh:property [
+       sh:path [ sh:alternativePath 
+                ( foaf:givenName foaf:name foaf:familyName )
+                ] ;
+       sh:datatype xsd:string ;
+    ] .
+
+
+# Pregunta 3
+
+ex:LaureateShape a sh:NodeShape ;
+    sh:targetClass nobel:Laureate ;
+	sh:property [
+      sh:path dbo:affiliation ;
+      sh:class dbo:University ;
+      sh:minCount 1
+      ].
+
+# Pregunta 4
+
+ex:LaureateShape a sh:NodeShape ;
+    sh:targetClass nobel:Laureate ;
+	sh:property [
+      sh:path dbo:affiliation ;
+      sh:qualifiedValueShape [ sh:class dbo:University ; ] ;
+      sh:qualifiedMinCount 1
+      ].
+
+# Pregunta 5
+
+ex:LaureateShape a sh:NodeShape ;
+    sh:targetClass nobel:Laureate ;
+	sh:property [
+      sh:path dbp:dateOfBirth ;
+      sh:equals foaf:birthday ] .
+
+# no se valida bien si alguna de las dos no esta definida, esto ocurre ya que la igualdad es una comparacion
+# entre dos conjuntos, por lo que si hay alguna diferencia (incluso si la diferencia es que no existe el otro conjunto)
+# lanzará un error. 
+
+
+# Pregunta 6
+
+ex:LaureateShape a sh:NodeShape ;
+    sh:targetClass nobel:Laureate ;
+    sh:property [
+        sh:path dbp:dateOfBirth ;
+        sh:or (
+            [ sh:equals foaf:birthday ] 
+            [ sh:maxCount 0]
+            ) ] ;
+    sh:property [
+        sh:path foaf:birthday ;
+        sh:or (
+            [ sh:equals dbp:dateOfBirth ]
+            [ sh:maxCount 0 ]
+            )
+            ] .
+
+# con el maxcount se logra que la validacion se haga bien, ya que dice que pueden haber dos caminos, en el que dateofbirth y 
+# birthday son iguales, y en el que puede no existir una propiedad (y se hace viceversa para que se cumpla con ambas propiedades).
+
+# Pregunta 7
+
+ex:LaureateShape a sh:NodeShape ;        
+    sh:targetClass nobel:Laureate ;    
+    sh:property [
+       sh:path [
+           sh:alternativePath ( foaf:name 
+                                foaf:givenName 
+                                foaf:familyName )
+       ] ;
+       sh:pattern "^[^0-9_]{2,}$" ;  
+    ] .
+
+# Pregunta 8
+
+ex:LaureateAwardShape a sh:NodeShape ;
+    sh:targetClass nobel:LaureateAward ;
+    sh:property [
+        sh:path nobel:share ;
+        sh:in ( "1" "2" "3" "4" ) ;
+    ] .
+
+
+# Pregunta 9
+
+ex:nobelPriceShape a sh:NodeShape ;        
+    sh:targetClass nobel:nobelPrize ;    
+    sh:property [
+       sh:path nobel:motivation ;
+       sh:minLength 10 ;
+       sh:uniqueLang  true ;
+    ] .
